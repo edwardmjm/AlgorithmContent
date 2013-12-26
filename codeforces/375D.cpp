@@ -20,13 +20,14 @@ int n, m;
 int c[N], ans[N];
 vector <PII> Q[N];
 vector <int> E[N];
-
+struct Node;
+Node *null;
 struct Node {
     Node *ch[2];
     int fix, key, size;
     void up();
     int query(int);
-}pool[N * 20], *C = pool + 1, *null = pool;
+}pool[N * 20], *C = pool + 1;
 
 void Node::up() {
 	if (this == null) return;
@@ -144,7 +145,7 @@ int main() {
         u--;
         Q[u].push_back(PII(k, i));
     }
-    null->size = 0; null->ch[0] = null->ch[1] = null;
+    null = pool; null->size = 0; null->ch[0] = null->ch[1] = null;
     dfs(0, -1);
     rep (i, m) printf("%d\n", ans[i]);
 }
