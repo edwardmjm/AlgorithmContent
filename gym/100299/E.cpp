@@ -30,7 +30,7 @@ MS* dfs(int u, int fa) {
         if (E[u][i] != fa)
             res = merge(dfs(E[u][i], u), res);
     PLL cur = a[u] > 0 ? PLL(0, a[u]) : PLL(-a[u], 0);
-    while (!res->empty() && (cur.second < cur.first || cur.first >= res->begin()->first)) {
+    while (!res->empty() && (cur.second < cur.first || cur.second >= res->begin()->first)) {
         PLL tmp = *res->begin();
         res->erase(res->begin());
         cur = tmp.first > cur.second ? PLL(cur.first - cur.second + tmp.first, tmp.second) : PLL(cur.first, cur.second - tmp.first + tmp.second);

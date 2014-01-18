@@ -29,10 +29,14 @@
                 对于相邻的pair，如果previous.first &gt;= previous.second(扣血比补血多)，那么这个pair必然可以和后面一个合并。原因是根据最优化目标的原则，不可能取了previous就不取next。所以previous和next要么同取要么同不取，所以理应合并。
             </li>
             <li>
-                对于相邻的pair，如果previous.first &gt;= next.first(伤血门槛不递增)，那么previous和next必然可以合并。原因是：根据前面两条，所有的pair都满足first &lt; second，所以根据最优性能取都是取掉最好。而这里next的门槛本质是previous.first - previous.second + next.first。现在条件里有两个不等式(previous.first &lt; previous.second, previous.first &gt;= next.first)，于是previous.first - previous.second + next.first &lt;= next.first
+                对于相邻的pair，如果previous.first &gt;= next.first(伤血门槛不递增)，那么previous和next必然可以合并。原因是：根据前面两条，所有的pair都满足first &lt; second，所以根据最优性能取都取掉最好。所以都是贪心去取就好了。如果next门槛比previous还低，那么做完previous肯定顺便做掉next。其实这里条件可以更紧一点，取previous.first >= preivous.first - previous.second + next.first作为合并条件也可以AC的，但是前面那个已经足够了。
             </li>
         </ol>
     </li>
     <li>
+        证明：假如每个分支下的子树都是链，那么该子树也可以看成链。
+        其实这个就是就是数学归纳法的意思。然后这个只要把分支下的pair按first顺序列成一行就可以了。
     </li>
 </ol>
+
+综上，用multiset&lt;pair &lt;long long, long long&gt;&gt;维护链就可以了。
