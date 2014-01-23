@@ -13,14 +13,9 @@ typedef pair <int, int> PII;
 
 int n, m, f[1005];
 int num[26];
+int val[26];
 string a[26];
 char buf[10005];
-
-int calc(int lhs, int rhs, const string &s) {
-	if (lhs == rhs) return lhs;
-	if (lhs > rhs || rhs >= 100000) return -1;
-
-}
 
 int main() {
 	gets(buf);
@@ -30,7 +25,5 @@ int main() {
 		a[i] = buf;
 		int len = strlen(buf);
 	}
-	rep (i, n) num[i] = calc(1, a[i].size(), a[i]);
-	memset(f, 0, sizeof(f));
-	f[0] = 1;
+	
 }
