@@ -104,6 +104,7 @@ void search() {
     State *rs;
     int ri, rj;
     ll ans = -1;
+	int maxSize = 0;
     for (int j = n; j >= 1; j--) {
         for (int i = j; i <= n; i++) {
     //for (int i = 1; i <= n; i++) {
@@ -123,14 +124,17 @@ void search() {
                     rs = *it;
                 }
             }
+			maxSize = max(maxSize,(int) f[i][j].size());
         }
     }
     cout << ans << endl;
     output(ri, rj, rs);
+	cout << endl;
+	cout << maxSize << endl;
 }
 
 int main() {
-    freopen("young.in", "r", stdin);
+    //freopen("young.in", "r", stdin);
     //freopen("young.out", "w", stdout);
     cin >> n;
     search();
