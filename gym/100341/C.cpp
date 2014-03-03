@@ -7,13 +7,10 @@
 #include <cmath>
 using namespace std;
 #define rep(i,n) for (int i = 0; i < (int)(n); i++)
-//typedef pair <int, int> PII;
 typedef long long ll;
-typedef long double REAL;
 const int N = 65536 * 2;
 const int Mod = 786433;
 
-//g是p的原根。需要保证p为素数且p = k * 2^len + 1(k为正整数)
 const int p=786433,g=10;
 ll pm(ll a,int n,int m=p) {
     ll r=1;
@@ -50,16 +47,6 @@ void conv(int *a, int *b, int *c, int len) {
     reverse(c + 1, c + len);
     ntt(c, len);
 }
-/*
-void conv(vi a,vi b,vi & c) {
-    int l = 1;
-    for( ;a.size()+b.size()>l;l*=2);
-    ntt(a,l);ntt(b,l);
-    c.resize(l);
-    for(int i=0,t=pm(l,p-2);i<l;++i)c[(l-i)%l]=a[i]*(ll)b[i]%p*t%p;
-    ntt(c,l);
-}
-*/
 
 int maxIdx(int *a) {
     for (int i = N + 2; i >= 0; i--)
