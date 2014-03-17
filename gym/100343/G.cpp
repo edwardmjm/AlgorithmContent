@@ -15,7 +15,7 @@ typedef long long ll;
 typedef pair <int, int> PII;
 const int N = 100005;
 int a, b, m, sum;
-int p[N], dfn[N], low[N], ans[N], need[N], rest[N], Tr[N];
+int p[N], dfn[N], low[N], ans[N], need[N], rest[N];
 
 struct Edge {
     int id, u, v;
@@ -62,7 +62,7 @@ void give(int u) {
     rep (i, backEdge[u].size()) {
         int v = backEdge[u][i].u;
         give(v);
-        int x = min(rest[v], sum - need[v]);
+        int x = min(rest[v], sum - need[u]);
         rest[u] += x;
         rest[v] -= x;
         ans[backEdge[u][i].id] += x;

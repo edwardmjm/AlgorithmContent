@@ -19,10 +19,13 @@ typedef vector <int> VI;
 #define SET unordered_set
 const int BS = 800;
 const int BS2 = 1000;
-const int N = 500005;
+const int N = 50005;
+struct Query P{
+    char o;
+    int x, y;
+}Q[250005];
 int n, m, q;
-SET <int> E[N];
-VI big[N];
+vector < pair <int, bool> > E[N], big[N];
 int SZ[N];
 int ans[N];
 bool on[N];
@@ -84,6 +87,48 @@ int main() {
         E[v].insert(u);
     }
     rebuild();
+    rep (i, q) {
+        static char buf[10];
+        scanf("%s", buf);
+        Q[i].o = buf[0];
+        Q[i].read();
+        int x, y;
+        if (buf[0] == 'O') {
+            scanf("%d", &x);
+            addOn(--x);
+        } else if (buf[0] == 'F') {
+            scanf("%d", &x);
+            addOff(--x);
+        } else if (buf[0] == 'A') {
+            scanf("%d%d", &x, &y);
+            x--; y--;
+            assert(!E[x].count(y));
+            E[x].insert(y);
+            E[y].insert(x);
+            if (SZ[y] > BS) {
+                big[x].push_back(y);
+            } else {
+                if (SZ[x] > BS)
+                    ans[x] += on[y];
+            }
+            if (SZ[x] > BS) {
+                big[y].push_back(x);
+            } else {
+                if (SZ[y] > BS)
+                    ans[y] += on[x];
+            }
+            ++cnt;
+            if (cnt >= BS2) {
+                rebuild();
+                cnt = 0;
+            }
+        } else if (buf[0] == 'D') {
+            scanf("%d%d", &x, &y);
+            x--; y--;
+        } else if (o == 'C') {
+            scanf("%d", &x);
+        }
+    }
     int cnt = 0;
     rep (_, q) {
         static char buf[10];
