@@ -100,5 +100,4 @@ int main() {
 			puts("No solution");
 		}
 	}
-	return 0;
 }
