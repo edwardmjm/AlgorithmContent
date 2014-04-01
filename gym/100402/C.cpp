@@ -55,7 +55,6 @@ struct Point {
 
 struct Line {
     Point u, v;
-
     Line() {}
     Line(Point u, Point v): u(u), v(v) {}
 
